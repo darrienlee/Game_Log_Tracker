@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${currentGame.getName()}">Title</title>
+    <!--<link rel="stylesheet" th:href="@{/homepagestylesheet.css}"/>-->
+    <link th:href="@{css/mystylesheet.css}" rel="stylesheet" />
+</head>
+<body>
+
+    <h1 th:text="${currentGame.getName()}"></h1>
+
+    <h3 th:text="'Genre: ' + ${currentGame.getGenre()}"></h3>
+
+    <a th:href="@{/addSession(game=${currentGame.getName()}, id=${id})}" th:class="button3">Add Session</a>
+
+<!--    Display Session Information    -->
+
+    <h2>Sessions</h2>
+    <table class="center">
+        <tr th:each="currentSession: ${currentGame.getSessions()}">
+
+            <h3 th:text="${currentSession.getGameName()}"></h3>
+            <p th:text="${currentSession.getCurrentDate()}"></p>
+
+            <p th:text="${currentSession.displayInfo()}"></p>
+
+            <p th:text="'Session Thoughts: '+ ${currentSession.getReflection()}"></p>
+    </table>
+
+</body>
+</html>
